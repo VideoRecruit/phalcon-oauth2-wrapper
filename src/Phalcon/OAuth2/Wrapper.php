@@ -42,14 +42,19 @@ class Wrapper
 	}
 
 	/**
-	 * @return array
+	 * @return AccessToken
+	 * @throws AuthenticationException
 	 */
 	public function handleToken()
 	{
 		$response = $this->configuration->getServer()->handleTokenRequest($this->request);
-		$result = Json::decode($response->getResponseBody(), Json::FORCE_ARRAY);
 
-		return CaseConverter::camelCase($result);
+		// create access token object on success
+		if ($response->getParameter('error') === NULL) {
+			return AccessToken::fromJSON($response->getResponseBody());
+		}
+
+		throw new AuthenticationException;
 	}
 
 	/**

@@ -3,6 +3,8 @@
 namespace VideoRecruit\Phalcon\OAuth2;
 
 
+use Exception;
+
 interface IException
 {
 
@@ -87,6 +89,17 @@ class UnexpectedValueException extends \UnexpectedValueException implements IExc
  * The exception is thrown when there is no available mapper for requested Content-Type.
  */
 class MappingException extends InvalidStateException
+{
+
+}
+
+
+
+/**
+ * This exception is thrown when invalid credentials has been given
+ * and it's not possible to generate valid access token.
+ */
+class AuthenticationException extends InvalidStateException
 {
 
 }
