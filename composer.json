@@ -1,0 +1,26 @@
+{
+    "name": "videorecruit/phalcon-oauth2-wrapper",
+    "type": "library",
+    "description": "PHP wrapper for OAuth2 server with simple integration into Phalcon based project.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lukas Tomek",
+            "email": "tomeklukas@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">= 5.6",
+        "ext-phalcon": "*",
+        "bshaffer/oauth2-server-php": "^1.9",
+        "nette/utils": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "VideoRecruit\\": "src/"
+        },
+        "classmap": [
+            "src/Phalcon/OAuth2/exceptions.php"
+        ]
+    }
+}
