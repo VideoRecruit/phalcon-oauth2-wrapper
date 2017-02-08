@@ -34,8 +34,11 @@ class Wrapper
 	 * @param Mapper\MapperFactory $mapperFactory
 	 * @param HttpRequest $httpRequest
 	 */
-	public function __construct(Configuration $configuration, Mapper\MapperFactory $mapperFactory, HttpRequest $httpRequest)
-	{
+	public function __construct(
+		Configuration $configuration,
+		Mapper\MapperFactory $mapperFactory,
+		HttpRequest $httpRequest
+	) {
 		$this->configuration = $configuration;
 		$this->mapperFactory = $mapperFactory;
 		$this->request = $this->createRequest($httpRequest);
@@ -68,11 +71,16 @@ class Wrapper
 
 	/**
 	 * @return string
+	 * @throws AuthenticationException
 	 */
 	public function getClientId()
 	{
 		$token = $this->configuration->getServer()
 			->getAccessTokenData($this->request);
+
+		if (!$token) {
+			throw new AuthenticationException;
+		}
 
 		return $token['client_id'];
 	}

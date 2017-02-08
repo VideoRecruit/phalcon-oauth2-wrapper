@@ -19,7 +19,7 @@ class Configuration
 		'dsn' => NULL,
 		'username' => NULL,
 		'password' => NULL,
-		'accessToken' => 'accessToken',
+		'accessToken' => 'access_token',
 		'lifetime' => 3600,
 	];
 
@@ -45,7 +45,7 @@ class Configuration
 	 */
 	public function __construct(array $values)
 	{
-		$this->values = array_merge_recursive(self::$defaults, $values);
+		$this->values = array_merge(self::$defaults, $values);
 	}
 
 	/**
