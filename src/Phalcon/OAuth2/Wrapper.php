@@ -93,8 +93,7 @@ class Wrapper
 	 */
 	protected function createRequest(HttpRequest $httpRequest)
 	{
-		$get = CaseConverter::snakeCase($_GET);
-		$post = CaseConverter::snakeCase($_POST);
+		$post = $_POST;
 		$body = trim($httpRequest->getRawBody());
 		$contentType = $httpRequest->getHeader('Content-Type');
 
@@ -102,6 +101,9 @@ class Wrapper
 			$mapper = $this->mapperFactory->getMapper($contentType);
 			$post = $mapper->parse($body);
 		}
+
+		$get = CaseConverter::snakeCase($_GET);
+		$post = CaseConverter::snakeCase($post);
 
 		return new OAuth2\Request($get, $post, [], $_COOKIE, $_FILES, $_SERVER);
 	}
