@@ -75,6 +75,7 @@ class AccessToken
 	}
 
 	/**
+	 * @param bool $camelCase
 	 * @return array
 	 */
 	public function toArray($camelCase = TRUE)
